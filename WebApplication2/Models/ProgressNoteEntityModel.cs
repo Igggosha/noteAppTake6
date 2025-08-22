@@ -3,14 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication2.Models;
 
-[Table("Notes")]
-public class NoteEntityModel: BaseNoteEntity
+[Table("ProgressNotes")]
+public class ProgressNoteEntityModel: BaseNoteEntity
 {
-    
-
-    public static NoteEntityModel FromViewModel(NoteViewModel fromViewModel, string? authorId, List<TagEntity> tags)
+    public static ProgressNoteEntityModel FromViewModel(NoteViewModel fromViewModel, string? authorId, List<TagEntity> tags)
     {
-        var e = new NoteEntityModel()
+        var e = new ProgressNoteEntityModel()
         {
             Name = fromViewModel.Name,
             Content = fromViewModel.Content,
@@ -23,10 +21,9 @@ public class NoteEntityModel: BaseNoteEntity
     
     
 
-    //unused?
-    public static NoteEntityModel FromProgressViewModel(ProgressNoteViewModel vm, string? authorId, List<TagEntity> tags)
+    public static ProgressNoteEntityModel FromProgressViewModel(ProgressNoteViewModel vm, string? authorId, List<TagEntity> tags)
     {
-        var e = new NoteEntityModel()
+        var e = new ProgressNoteEntityModel()
         {
             Name = vm.Name, 
             Content = "",
@@ -40,10 +37,9 @@ public class NoteEntityModel: BaseNoteEntity
         }
         return e;
     }
-    
-    public static NoteEntityModel FromProgressNoteEntity(ProgressNoteEntityModel e)
+    public static ProgressNoteEntityModel FromNoteEntity(NoteEntityModel e)
     {
-        return new NoteEntityModel()
+        return new ProgressNoteEntityModel()
         {
             Name = e.Name,
             Content = e.Content,

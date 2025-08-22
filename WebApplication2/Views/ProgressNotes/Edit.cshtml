@@ -1,0 +1,94 @@
+@model WebApplication2.Models.ProgressNoteViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Edit</h1>
+
+<h4>Enter lift details</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <table>
+                    <thead>
+                    <th>Sets</th>
+                    <th>Reps</th>
+                    <th></th>
+                    </thead>
+                
+                    <tbody>
+                    @for (int i = 0; i < Model.NumberRow1.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                <input type="number" name="NumberRow1[@i]" value="@Model.NumberRow1[i]" class="form-control"/>
+                            </td>
+                            <td>
+                                <input type="number" name="NumberRow2[@i]" value="@Model.NumberRow2[i]" class="form-control"/>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">Remove</button>
+                            </td>
+                        </tr>
+                    }
+
+                    @* <label asp-for="Content" class="control-label"></label> *@
+                    @* <input asp-for="Content" class="form-control"/> *@
+                    @* <span asp-validation-for="Content" class="text-danger"></span> *@
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary" onclick="addRow()">Add Row</button>
+            </div>
+            <div class="form-group">
+                <label asp-for="TagIds" class="control-label">Tags</label>
+                <br>
+                <select multiple asp-for="TagIds" asp-items="ViewBag.Tags"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+    function addRow() {
+        let table = document.getElementById("pairsTable").getElementsByTagName('tbody')[0];
+        let index = table.rows.length;
+
+        let row = table.insertRow();
+
+        row.innerHTML = `
+            <td><input type="number" name="NumberRow1[${index}]" class="form-control" /></td>
+            <td><input type="number" name="NumberRow2[${index}]" class="form-control" /></td>
+            <td><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">Remove</button></td>
+        `;
+    }
+
+    function removeRow(button) {
+        let row = button.closest("tr");
+        row.remove();
+
+        // Re-index the inputs so ASP.NET model binding works correctly
+        let rows = document.querySelectorAll("#pairsTable tbody tr");
+        rows.forEach((r, i) => {
+            r.querySelector('input[name^="ListA"]').setAttribute("name", `ListA[${i}]`);
+            r.querySelector('input[name^="ListB"]').setAttribute("name", `ListB[${i}]`);
+        });
+    }
+</script>
+}

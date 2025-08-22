@@ -16,7 +16,7 @@ public class ProfileEntity
     
     
     List<NoteEntityModel> Notes = new List<NoteEntityModel>();
-    
+    List<ProgressNoteEntityModel> ProgressNotes = new List<ProgressNoteEntityModel>();
 
     [Column("last_online")] public DateTime LastOnline { get; set; }
 

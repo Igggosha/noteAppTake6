@@ -24,4 +24,12 @@
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Views\ProgressNotes\Create.cshtml" />
+      <AdditionalFiles Include="Views\ProgressNotes\Delete.cshtml" />
+      <AdditionalFiles Include="Views\ProgressNotes\Details.cshtml" />
+      <AdditionalFiles Include="Views\ProgressNotes\Edit.cshtml" />
+      <AdditionalFiles Include="Views\ProgressNotes\Index.cshtml" />
+    </ItemGroup>
+
 </Project>

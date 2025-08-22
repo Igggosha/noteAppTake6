@@ -15,4 +15,5 @@ public class TagEntity
     public string Name { get; set; } = "";
     
     public List<NoteEntityModel> Notes { get; set; } = new();
+    public List<ProgressNoteEntityModel> ProgressNotes { get; set; } = new();
 }

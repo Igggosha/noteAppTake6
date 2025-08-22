@@ -6,7 +6,7 @@ public class NoteViewModel
     public string Content { get; set; } = "";
     public List<int> TagIds { get; set; } = new List<int>();
 
-    public static NoteViewModel FromEntity(NoteEntityModel noteEntityModel)
+    public static NoteViewModel FromEntity(BaseNoteEntity noteEntityModel)
     {
         var noteViewModel = new NoteViewModel
         {

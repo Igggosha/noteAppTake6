@@ -7,6 +7,8 @@ namespace WebApplication2.Db;
 public class NoteDbContext: IdentityDbContext
 {
     public DbSet<NoteEntityModel> Notes { get; set; }
+    
+    public DbSet<ProgressNoteEntityModel> ProgressNotes { get; set; }
     public DbSet<TagEntity> Tags { get; set; }
     public DbSet<ProfileEntity> Profiles { get; set; }
     
